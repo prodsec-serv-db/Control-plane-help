@@ -1,0 +1,37 @@
+name: Sync with upstream
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: 
+    
+
+
+jobs:
+
+  sync-and-delete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+          
+      - name: Sync fork
+        run: |
+            git remote add upstream git@github.com:yashchhabria-db/Control-plane-help.git
+            git fetch upstream
+            git checkout main
+            git merge -m "Merge upstream changes" upstream/main
+            git push origin main
+            
+#          git config --global merge.summary "Merge upstream changes"
+#       - name: GitHub Sync to Upstream Repository
+#         uses: dabreadman/sync-upstream-repo@v1.3.0
+#         with: 
+#           upstream_repo: git://github.com:databricks/universe.git
+#           upstream_branch: master
+#           downstream_branch: master
+#           token: ${{ secrets.ACCESS_TOKEN }}
+#           fetch_args: ${{ env.FETCH_ARGS }}
+#           merge_args: ${{ env.MERGE_ARGS }}
+#           push_args: ${{ env.PUSH_ARGS }}
+#           spawn_logs: ${{ env.SPAWN_LOGS }}
