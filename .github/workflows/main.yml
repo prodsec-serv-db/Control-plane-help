@@ -20,6 +20,8 @@ jobs:
             git remote add upstream https://github.com/yashchhabria-db/Control-plane-help.git
             git fetch upstream
             git checkout main
+            git config  user.email "yash.chhabria@databricks.com"
+            git config  user.name "yashchhabria-db"
             git merge -X theirs --allow-unrelated-histories -m "Merge upstream changes" upstream/main
             git push origin main
             
