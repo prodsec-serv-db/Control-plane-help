@@ -17,7 +17,7 @@ jobs:
           
       - name: Sync fork
         run: |
-            git remote add upstream git@github.com:yashchhabria-db/Control-plane-help.git
+            git remote add upstream https://github.com/yashchhabria-db/Control-plane-help.git
             git fetch upstream
             git checkout main
             git merge -m "Merge upstream changes" upstream/main
